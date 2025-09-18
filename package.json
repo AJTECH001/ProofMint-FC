@@ -1,0 +1,46 @@
+{
+  "name": "proofmint-mvp",
+  "version": "1.0.0",
+  "description": "ProofMint MVP - Digital Receipt NFTs on Filecoin",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js --network calibration"
+  },
+  "dependencies": {
+    "@filoz/synapse-sdk": "0.24.5",
+    "@rainbow-me/rainbowkit": "1.3.5",
+    "@wagmi/core": "1.4.13",
+    "ethers": "6.7.1",
+    "lucide-react": "0.279.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "viem": "1.21.4",
+    "wagmi": "1.4.13"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "@openzeppelin/contracts": "^4.9.3",
+    "@types/node": "20.6.3",
+    "@types/react": "18.2.22",
+    "@types/react-dom": "18.2.7",
+    "@vitejs/plugin-react": "4.1.0",
+    "autoprefixer": "10.4.15",
+    "hardhat": "^2.19.0",
+    "postcss": "8.4.29",
+    "tailwindcss": "3.3.3",
+    "vite": "4.4.9"
+  },
+  "keywords": [
+    "filecoin",
+    "nft",
+    "receipt",
+    "sustainability",
+    "blockchain"
+  ],
+  "author": "ProofMint",
+  "license": "MIT"
+}
