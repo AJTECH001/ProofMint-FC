@@ -1,5 +1,5 @@
 import { useAccount, usePublicClient, useWalletClient } from 'wagmi'
-import { PROOFMINT_ABI, PROOFMINT_CONFIG } from '../contracts/ProofMintABI'
+import { PROOFMINT_ABI, PROOFMINT_CONFIG } from '@/contracts/ProofMintABI'
 
 export function useProofMintContract() {
   const { address, isConnected } = useAccount()
