@@ -15,24 +15,38 @@ ProofMint transforms traditional receipts into intelligent NFTs with embedded su
 - **🌱 Sustainability Metrics**: Carbon footprint and recyclability tracking
 - **⚡ Real-time Storage**: Powered by Synapse SDK with FilCDN for fast retrieval
 
-## 🚀 **INSTANT DEMO - No Installation Required!**
+## 🚀 **INSTANT DEMO**
 
-### Option 1: Instant Browser Demo
+### Option 1: Development Server
 ```bash
-# Clone and run immediately
-git clone <your-repo-url>
-cd proofmint-mvp
-python3 serve.py
-```
-**Opens automatically in browser at http://localhost:8000**
+# Clone repository
+git clone https://github.com/AJTECH001/ProofMint-FC.git
+cd ProofMint-FC
 
-### Option 2: Direct File Demo
-Simply open `index.html` in any modern web browser - no server needed!
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+**Open browser at http://localhost:5173**
+
+### Option 2: Production Build
+```bash
+# Build for production
+npm run build
+
+# Serve the built files using any HTTP server
+npx serve dist
+```
+
+### Option 3: Direct File Demo
+Simply open `dist/index.html` in any modern web browser after building.
 
 ## 🎬 Live Demo Features
 
-The instant demo shows:
-✅ **Real-time Filecoin Storage Simulation**: Watch receipt data being stored with PDP verification  
+The demo shows:
+✅ **Real-time Filecoin Storage**: Watch receipt data being stored with PDP verification  
 ✅ **Interactive Receipt Generation**: Issue NFT receipts with sustainability metrics  
 ✅ **Filecoin Integration Workflow**: Complete storage process visualization  
 ✅ **Production-Ready UI**: Professional merchant portal interface  
@@ -45,7 +59,7 @@ Built with **Filecoin Onchain Cloud** stack:
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    ProofMint Frontend                       │
-│                     (HTML5 + Tailwind)                     │
+│                     (React + Tailwind)                     │
 └─────────────────────┬───────────────────────────────────────┘
                       │ Synapse SDK Integration
 ┌─────────────────────▼───────────────────────────────────────┐
@@ -61,9 +75,7 @@ Built with **Filecoin Onchain Cloud** stack:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## 🛠️ Full Development Stack
-
-For complete development environment:
+## 🛠️ Development Setup
 
 ### Prerequisites
 - Node.js 18+ and npm
@@ -75,23 +87,26 @@ For complete development environment:
 
 ```bash
 # Clone repository
-git clone <your-repo-url>
-cd proofmint-mvp
+git clone https://github.com/AJTECH001/ProofMint-FC.git
+cd ProofMint-FC
 
-# Option A: Instant Demo (No dependencies)
-python3 serve.py
+# Install dependencies
+npm install
 
-# Option B: Full Development Setup
-npm install --legacy-peer-deps
+# Compile smart contracts
 npm run compile
+
+# Deploy smart contracts to Filecoin Calibration testnet
 npm run deploy
+
+# Start development server
 npm run dev
 ```
 
 ### Getting Test Tokens
 
-1. **tFIL**: [Filecoin Calibration Faucet](https://faucet.calibnet.chainsafe-fil.io/funds.html)
-2. **USDFC**: [ChainSafe USDFC Faucet](https://forest-explorer.chainsafe.dev/faucet/calibnet_usdfc)
+1. **tFIL**: [Filecoin Calibration Faucet](https://faucet.calibration.fildev.network/)
+2. **USDFC**: [ChainSafe USDFC Faucet](https://usdfc-faucet.calibration.fildev.network/)
 
 ## 📋 Demo Walkthrough
 
@@ -193,11 +208,11 @@ function recycleGadget(uint256 receiptId) external onlyRecycler
 
 ## 🔗 Important Links
 
-- **Live Demo**: [Deploy your own or use local dev server]
-- **Smart Contract**: [View on Filecoin Explorer after deployment]
+- **Live Demo**: http://localhost:5173 (when running development server)
+- **Smart Contract**: [View on Filecoin Calibration Explorer](https://calibration.filscan.io/address/0xdEDeBDB00a83a0bD09b414Ea5FD876dB40799529)
 - **Synapse SDK Docs**: https://www.npmjs.com/package/@filoz/synapse-sdk
-- **Filecoin Calibration**: https://faucet.calibnet.chainsafe-fil.io
-- **USDFC Faucet**: https://forest-explorer.chainsafe.dev/faucet/calibnet_usdfc
+- **Filecoin Calibration**: https://faucet.calibration.fildev.network/
+- **USDFC Faucet**: https://usdfc-faucet.calibration.fildev.network/
 
 ## 🧪 Testing & Validation
 
@@ -222,7 +237,7 @@ npm run demo:full
 - [ ] Recycler verification process
 - [ ] Sustainability metrics calculation
 
-## 🚀 Wave 2 Submission Highlights
+
 
 ### Real-World Utility
 - **Solves Actual Problem**: $500B e-waste crisis with verifiable recycling
@@ -248,8 +263,6 @@ For questions about the ProofMint MVP:
 - Examine the smart contract code
 - Test the demo flows
 
-## 🏆 Built for Filecoin OC Wave 2
 
-This MVP demonstrates the power of Filecoin Onchain Cloud for real-world applications, showing how decentralized storage can revolutionize traditional business processes while creating transparency in sustainability efforts.
 
 **Ready to mint the future of digital receipts? Let's build sustainable commerce together! 🌱**
