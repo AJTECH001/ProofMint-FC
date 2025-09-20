@@ -27,7 +27,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ['@safe-globalThis/safe-apps-provider', '@safe-globalThis/safe-apps-sdk'],
+      external: ['@safe-global/safe-apps-provider', '@safe-global/safe-apps-sdk', '@safe-globalThis/safe-apps-provider', '@safe-globalThis/safe-apps-sdk'],
     },
     assetsDir: 'assets',
     assetsInlineLimit: 4096,
