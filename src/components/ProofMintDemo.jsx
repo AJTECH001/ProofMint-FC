@@ -128,10 +128,10 @@ export default function ProofMintDemo() {
 
       addToOutput(`📊 Receipt Data:`)
       addToOutput(`   Product: ${receiptData.items[0].name}`)
-      addToOutput(`   Price: $${receiptData.items[0].price}`)
+      addToOutput(`   Price: ${receiptData.items[0].price}`)
       addToOutput(`   Category: ${receiptData.items[0].category}`)
-      addToOutput(`   Carbon Footprint: ${receiptData.sustainability.carbonFootprint}`)
-      addToOutput(`   Recyclability Score: ${receiptData.sustainability.recyclabilityScore}%`)
+      addToOutput(`   Carbon Footprint: ${receiptData.sustainability?.carbonFootprint || 'N/A'}`)
+      addToOutput(`   Recyclability Score: ${receiptData.sustainability?.recyclabilityScore || 'N/A'}%`)
 
       // Step 2: Store on Filecoin
       addToOutput('🌐 Storing receipt metadata on Filecoin...')

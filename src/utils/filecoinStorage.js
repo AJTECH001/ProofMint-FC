@@ -47,6 +47,9 @@ export class FilecoinStorage {
     try {
       console.log('📦 Storing receipt metadata on Filecoin...', receiptData);
 
+      // Ensure we have sufficient funds before attempting storage
+      await this.ensureStorageFunds();
+
       // Prepare receipt metadata for storage
       const metadata = {
         version: "1.0",
@@ -197,7 +200,10 @@ export class FilecoinStorage {
   calculateCarbonFootprint(receiptData) {
     // Simplified calculation based on product type and price
     const baseFootprint = 2.5; // kg CO2eq
-    const priceMultiplier = Math.log10(receiptData.totalAmount || 100) / 2;
+    const totalAmount = receiptData.purchaseDetails?.totalAmount || 
+                       receiptData.items?.reduce((sum, item) => sum + (item.price || 0), 0) || 
+                       100;
+    const priceMultiplier = Math.log10(totalAmount) / 2;
     
     return `${(baseFootprint * priceMultiplier).toFixed(2)}kg CO2eq`;
   }
@@ -218,7 +224,8 @@ export class FilecoinStorage {
       'default': 60
     };
 
-    const category = receiptData.items?.[0]?.category?.toLowerCase() || 'default';
+    const firstItem = receiptData.items?.[0];
+    const category = firstItem?.category?.toLowerCase() || 'default';
     return categoryScores[category] || categoryScores.default;
   }
 
@@ -226,7 +233,8 @@ export class FilecoinStorage {
    * Create sample receipt data for demo
    */
   static createSampleReceipt(overrides = {}) {
-    return {
+    // Create the base receipt data first
+    const receiptData = {
       receiptId: `PMR-${Date.now()}`,
       merchantInfo: {
         name: "TechHub Electronics",
@@ -253,15 +261,26 @@ export class FilecoinStorage {
           ...overrides.items?.[0]
         }
       ],
-      sustainability: {
-        eWasteInfo: {
-          properDisposal: "Authorized recycling center required",
-          hazardousMaterials: ["Lithium battery", "Rare earth elements"],
-          recyclingInstructions: "Remove battery before recycling"
-        },
-        ...overrides.sustainability
-      },
       ...overrides
     };
+
+    // Calculate sustainability metrics
+    const instance = new FilecoinStorage();
+    const carbonFootprint = instance.calculateCarbonFootprint(receiptData);
+    const recyclabilityScore = instance.calculateRecyclabilityScore(receiptData);
+
+    // Add sustainability data
+    receiptData.sustainability = {
+      carbonFootprint,
+      recyclabilityScore,
+      eWasteInfo: {
+        properDisposal: "Authorized recycling center required",
+        hazardousMaterials: ["Lithium battery", "Rare earth elements"],
+        recyclingInstructions: "Remove battery before recycling"
+      },
+      ...overrides.sustainability
+    };
+
+    return receiptData;
   }
 }

@@ -1,24 +1,39 @@
-const { ethers, network } = require("hardhat");
+const { ethers } = require("ethers");
 const fs = require('fs');
 
 async function main() {
-  // Get the deployer account
-  const [deployer] = await ethers.getSigners();
+  // Check if we have a valid private key
+  const privateKey = process.env.PRIVATE_KEY;
+  if (!privateKey || privateKey.length !== 64) {
+    console.error("❌ Invalid private key. Please check your .env file.");
+    process.exitCode = 1;
+    return;
+  }
 
   console.log("🚀 Deploying ProofMint to Filecoin Calibration...");
-  console.log("📍 Deploying with account:", deployer.address);
   
-  const balance = await deployer.provider.getBalance(deployer.address);
+  // Connect to the Filecoin Calibration network
+  const provider = new ethers.JsonRpcProvider("https://api.calibration.node.glif.io/rpc/v1");
+  
+  // Create a wallet instance
+  const wallet = new ethers.Wallet(privateKey, provider);
+  console.log("📍 Deploying with account:", wallet.address);
+  
+  // Check account balance
+  const balance = await provider.getBalance(wallet.address);
   console.log("💰 Account balance:", ethers.formatEther(balance), "FIL");
 
   if (balance < ethers.parseEther("0.1")) {
     console.warn("⚠️  Low balance. Get testnet FIL from https://faucet.calibration.fildev.network/");
   }
 
+  // Read the compiled contract
+  const contractJson = require("../artifacts/contracts/ProofMint.sol/ProofMint.json");
+  
   console.log("🔨 Deploying ProofMint contract...");
-  const ProofMint = await ethers.getContractFactory("ProofMint");
-  const proofMint = await ProofMint.connect(deployer).deploy();
-
+  const factory = new ethers.ContractFactory(contractJson.abi, contractJson.bytecode, wallet);
+  const proofMint = await factory.deploy();
+  
   console.log("⏳ Waiting for deployment confirmation...");
   await proofMint.waitForDeployment();
 
@@ -28,9 +43,8 @@ async function main() {
   // Save deployment info
   const deploymentInfo = {
     address: contractAddress,
-    network: network.name,
-    deployer: deployer.address,
-    blockNumber: await ethers.provider.getBlockNumber(),
+    network: "calibration",
+    deployer: wallet.address,
     timestamp: new Date().toISOString(),
     contractName: "ProofMint",
     chainId: 314159 // Filecoin Calibration chain ID
@@ -58,18 +72,9 @@ async function main() {
   console.log("2. Verify on FilFox: https://calibration.filscan.io/address/" + contractAddress);
   console.log("3. Test the contract functions");
   console.log("4. Run: npm run dev");
-
-  return {
-    contract: proofMint,
-    address: contractAddress
-  };
 }
 
-if (require.main === module) {
-  main().catch((error) => {
-    console.error("❌ Deployment failed:", error);
-    process.exitCode = 1;
-  });
-}
-
-module.exports = main;
+main().catch((error) => {
+  console.error("❌ Deployment failed:", error);
+  process.exitCode = 1;
+});

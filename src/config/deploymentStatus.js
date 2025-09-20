@@ -1,10 +1,10 @@
 // Deployment Status Configuration
 export const DEPLOYMENT_STATUS = {
   // Set to true when contract is deployed
-  isDeployed: false,
+  isDeployed: true,
   
   // Contract address (will be updated after deployment)
-  contractAddress: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "",
+  contractAddress: "0xdEDeBDB00a83a0bD09b414Ea5FD876dB40799529",
   
   // Network information
   network: {
@@ -16,18 +16,18 @@ export const DEPLOYMENT_STATUS = {
   
   // Deployment information (to be filled after deployment)
   deployment: {
-    deployer: null,
+    deployer: "0xa4280dd3f9E1f6Bf1778837AC12447615E1d0317",
     blockNumber: null,
-    timestamp: null,
+    timestamp: "2025-09-20T17:17:04.809Z",
     transactionHash: null
   },
   
   // Feature flags based on deployment status
   features: {
-    realContractIntegration: false, // Enable when deployed
-    mockDataFallback: true,        // Disable when deployed
-    subscriptionPurchase: false,   // Enable when deployed
-    receiptMinting: false         // Enable when deployed
+    realContractIntegration: true, // Enable when deployed
+    mockDataFallback: false,       // Disable when deployed
+    subscriptionPurchase: true,    // Enable when deployed
+    receiptMinting: true          // Enable when deployed
   }
 };
 

@@ -22,4 +22,9 @@ export default defineConfig({
     include: /src\/.*\.[tj]sx?$/,
     exclude: [],
   },
+  build: {
+    rollupOptions: {
+      external: ['@safe-globalThis/safe-apps-provider', '@safe-globalThis/safe-apps-sdk'],
+    },
+  },
 })
