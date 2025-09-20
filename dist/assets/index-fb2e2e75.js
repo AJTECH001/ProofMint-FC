@@ -1,4 +1,4 @@
-import{n as fe,s as Ke,T as O,t as L,a as g,o as Y,R as jr,p as H,y as ae}from"./index-effb2ba1.js";import{aY as Nr}from"./index-e2ab4169.js";import"@safe-globalThis/safe-apps-provider";import"@safe-globalThis/safe-apps-sdk";/**
+import{n as fe,s as Ke,T as O,t as L,a as g,o as Y,R as jr,p as H,y as ae}from"./index-17224109.js";import{aY as Nr}from"./index-e7272193.js";import"@safe-globalThis/safe-apps-provider";import"@safe-globalThis/safe-apps-sdk";/**
  * @license
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause

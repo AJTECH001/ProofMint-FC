@@ -1,0 +1,13 @@
+# Hardhat/Smart Contract files (not needed for frontend deployment)
+contracts/
+scripts/
+test/
+cache/
+artifacts/
+hardhat.config.js
+
+# Development dependencies that cause conflicts
+@nomicfoundation/
+
+# Node modules (will be installed by Vercel)
+node_modules/
