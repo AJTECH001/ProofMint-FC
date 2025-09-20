@@ -4,6 +4,7 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/',
   plugins: [react()],
   define: {
     global: 'globalThis',
@@ -28,5 +29,10 @@ export default defineConfig({
     rollupOptions: {
       external: ['@safe-globalThis/safe-apps-provider', '@safe-globalThis/safe-apps-sdk'],
     },
+    assetsDir: 'assets',
+    assetsInlineLimit: 4096,
+  },
+  server: {
+    historyApiFallback: true,
   },
 })
