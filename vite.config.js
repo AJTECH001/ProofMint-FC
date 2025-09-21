@@ -6,15 +6,14 @@ import { resolve } from 'path'
 export default defineConfig({
   base: '/',
   plugins: [react()],
-  define: {
-    global: 'globalThis',
-  },
+
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
       process: "process/browser",
       buffer: "buffer",
       util: "util",
+
     },
   },
   optimizeDeps: {
@@ -27,7 +26,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ['@safe-global/safe-apps-provider', '@safe-global/safe-apps-sdk', '@safe-globalThis/safe-apps-provider', '@safe-globalThis/safe-apps-sdk'],
+
     },
     assetsDir: 'assets',
     assetsInlineLimit: 4096,
