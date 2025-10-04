@@ -3,6 +3,9 @@ import { publicProvider } from 'wagmi/providers/public'
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import Home from './components/Home'
+import AdvancedProofMintDemo from './components/AdvancedProofMintDemo'
+import PilotDeployment from './components/PilotDeployment'
+import MobileReceiptViewer from './components/MobileReceiptViewer'
 
 // Define Filecoin chains
 const filecoinCalibration = {
